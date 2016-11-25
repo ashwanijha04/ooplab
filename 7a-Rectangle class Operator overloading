@@ -1,0 +1,106 @@
+Write a c++ program to create a class called Rectangle. Accept values of length and breadth. Implement the following operations
+by overloading the operator + and ==. After every operation, display the result by overloading the operator <<.
+1) Add two rectangle objects.
+2) Find area and perimeter.
+3) Check whether two rectangle objects are same or not.
+
+
+/************************************************************************************************************************/
+
+#include<iostream>
+using namespace std;
+
+class Rectangle
+{
+	
+
+	public:
+		float length;
+		float breadth;
+			Rectangle()
+			{
+				length = 0.0;
+				breadth = 0.0;
+			}Rectangle(float l, float b)
+			{
+				length = l;
+				breadth = b;
+			}
+			
+			Rectangle operator +(Rectangle);
+			bool operator ==(const Rectangle&);
+			friend ostream & operator << (ostream &out, const Rectangle &R);
+			
+};
+
+
+Rectangle Rectangle::operator +(Rectangle R)
+{
+	Rectangle temp;
+	
+	temp.length = length + R.length;
+	temp.breadth = breadth + R.breadth; 
+	return temp;
+	
+} 
+
+bool Rectangle::operator ==(const Rectangle& R)
+{
+	if(length == R.length && breadth == R.breadth)
+		return true;
+	else
+		return false;
+}
+
+ostream & operator << (ostream &out, const Rectangle &R)
+{
+    out << "The length is " << R.length << endl;
+    out << "The breadth is " << R.breadth << endl;
+    return out;
+}
+
+
+int main()
+{
+	
+	float l1,b1;
+	float l2,b2;
+	
+	
+	
+	
+	cout<<"Enter the length of first Rectangle : ";
+	cin >> l1;
+	
+	cout<<"Enter the breadth of first Rectangle: ";
+	cin>>b1;
+	
+	cout<<"Enter the length of second Rectangle : ";
+	cin >> l2;
+	
+	cout<<"Enter the breadth of second Rectangle: ";
+	cin>>b2;
+	
+	Rectangle R1(l1,b1);
+	Rectangle R2(l2,b2);
+	Rectangle R3;
+	//ADDING TWO RECTANGLE OBJECTS
+	R3=R1+R2;
+	cout <<R3;
+	//FINDING AREA AND PERIMETER
+	cout<<"Area of R1 = " << R1.length * R1.breadth<<endl;
+	cout<<"Perimeter of R1 = " << 2*(R1.length + R1.breadth)<<endl;
+	
+	cout<<"Area of R2 = " << R2.length * R2.breadth<<endl;
+	cout<<"Perimeter of R2 = " << 2*(R1.length + R1.breadth)<<endl;
+	
+	//CHEKING WHETHER TWO RECTANGLE OBJECTS ARE SAME OR NOT
+	if(R1 == R2)
+		cout<<"The rectangle objects are equal"<<endl;
+	else
+		cout<<"The rectangle objects are not equal"<<endl;
+
+	return 0;	
+}
+
+	
