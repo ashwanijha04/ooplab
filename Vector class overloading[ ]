@@ -1,0 +1,42 @@
+/*7(b) Create a vector class with an array of 10 elements, assign the array elements and display the
+elements at any particular poition by using subscript operator.*/
+
+
+
+
+/*************************************************************************************/
+#include <iostream>
+using namespace std;
+
+class Vector
+{
+public:
+	int a[10];
+	int& operator[] (const int index);
+	void print_array();
+};
+
+int& Vector::operator[] (const int index)
+{
+	return a[index];
+}
+
+void Vector::print_array()
+{
+	for (int j=0; j < 10; j++)
+        cout << "array[" << j << "] = " << a[j] << "\n";
+}
+
+int main(int argc, char const *argv[])
+{
+	Vector ob;
+
+	cout<<"Assigning values\n";
+	for(int i=0; i<10; i++)
+	{
+		ob[i] = i+1;
+	}
+	cout<<"Printing"<<endl;
+	ob.print_array();
+	return 0;
+}
