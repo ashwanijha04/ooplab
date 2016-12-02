@@ -1,0 +1,99 @@
+	/*
+  8(b) create a distance class with two data members feet and inches use meber functions to get the
+lements and display the values. Use the following operator to display the values after each
+operations using << operator
+i) Increment the values by using Pre Increment ii) Decrement the values using post decrement iii)
+Assign the values to another object(= operator)
+  
+  */
+  
+  
+  #include <iostream>
+		using namespace std;
+
+		class Distance
+		{
+			
+
+		public:
+			int feet;
+			int inches;
+
+			Distance(){}
+			Distance(int f, int i)
+			{
+				feet = f;
+				inches = i;
+			}
+
+			void get_elements(int f, int i)
+			{
+				feet = f;
+				inches = i;
+			}
+
+
+			void display()
+			{
+				cout<<"Display function called"<<endl;
+				cout<<"Original Feet: "<<feet<<endl;
+				cout<<"Original Inches: "<<inches<<endl;
+			}
+
+			Distance operator++();
+			Distance operator--(int);
+			Distance operator=(Distance d);
+			friend ostream & operator<<(const ostream& out,const Distance &d);
+		};
+
+		Distance Distance::operator++()
+		{
+			feet++;
+			inches++;
+			return *this;
+		}
+
+		Distance Distance::operator--(int)
+		{
+			--feet;
+			--inches;
+			return *this;
+		}
+
+		Distance Distance::operator=(Distance d)
+		{
+			feet = d.feet;
+			inches = d.inches;
+
+			return *this;
+		}
+
+		ostream & operator<<( ostream& out, const Distance &d)
+		{
+			out<<"Feet is : "<<d.feet<<endl;
+			out<<"Inches is : "<<d.inches<<endl;
+			return out;
+		}
+
+		int main()
+		{
+			Distance d1;
+			Distance d2(45,27);
+			int f,i;
+			cout<<"Enter the feet:"<<endl;
+			cin>>f;
+			cout<<"Enter the inches:"<<endl;
+			cin>>i;
+
+			d1.get_elements(f,i);
+			d1.display();
+
+			++d1;
+			cout<<d1;
+			d1--;
+			cout<<d1;
+			d1 = d2;
+			cout<<d2;
+
+			return 0;
+		}
