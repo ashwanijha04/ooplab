@@ -1,0 +1,115 @@
+/**************************************
+
+13b) Write a C++ program to create a class called QUEUE with member functions to add an
+element and to delete an element from the queue. Using these member functions, implement a
+queue of integers and doubles. Demonstrate the operations by displaying the contents of the queue
+after every operation.
+
+****************************************/
+
+#include <iostream>  
+//#include <iomanip.h> 
+
+#define  size  10 
+using namespace std; 
+template<class t> 
+class queue 
+{ 
+   private: 
+    t a[size]; 
+    int f,r; 
+   public: 
+    queue(); 
+    ~queue(); 
+    void add(); 
+    void del(); 
+    void dis(); 
+}; 
+
+template<class t> 
+queue<t>::queue() 
+{ 
+   f=-1; 
+   r=-1; 
+} 
+
+template<class t> 
+queue<t>::~queue() 
+{ } 
+
+template<class t> 
+void queue<t>::add() 
+{ 
+   if(r==size-1) 
+      cout<<endl<<"queue is full"; 
+   else 
+   { 
+      r++; 
+      cout<<endl<<"Enter the data:"; 
+      cin>>a[r]; 
+      if(f==-1) 
+        f=0; 
+   } 
+} 
+ 
+ 
+ 
+template<class t> 
+void queue<t>::dis() 
+{ 
+   if(f==-1) 
+      cout<<endl<<"queue is empty"; 
+   else 
+   { 
+      cout<<endl<<"Content of queue:"<<endl; 
+      for(int i=f;i<=r;i++) 
+        cout<<a[i]<<endl; 
+   } 
+} 
+
+
+template<class t> 
+void queue<t>::del() 
+{ 
+   if(f==-1) 
+      cout<<endl<<"Queue is empty"; 
+   else 
+   { 
+      cout<<endl<<"Deleted element is "<<a[f]; 
+      if(f==r) 
+        f=r=-1; 
+      else 
+        f=f+1; 
+   } 
+} 
+
+
+int main() 
+{ 
+   queue<int>q; 
+   int ch=1; 
+   while(ch) 
+   { 
+      cout<<endl<<"Enter 1 to add a data to queue:"; 
+      cout<<endl<<"Enter 2 to delete a data from the queue:"; 
+      cout<<endl<<"Enter 3 to display:"; 
+      cout<<endl<<"Enter 0 to quit:"; 
+      cout<<endl<<"Enter your choice:"; 
+      cin>>ch; 
+      switch(ch) 
+      { 
+          case 1: 
+            q.add(); 
+            break; 
+          case 2: 
+            q.del();
+            break; 
+          case 3:
+            q.dis();
+            break;
+
+
+      } 
+   } 
+   return 0; 
+}
