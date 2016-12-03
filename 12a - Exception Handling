@@ -1,0 +1,116 @@
+#include <iostream>
+using namespace std;
+	char choice = 'y';
+	float x,y;
+
+	void divide(float x, float y)
+{
+	if(y==0) 
+		throw "Division by zero error";
+	cout<<"Dividing " << x << " by " << y <<endl;
+	cout<<"Result is : " << x/y;
+}
+
+
+
+void arrayindex(int index)
+{
+	char a[] = {'A','B','C','D','E','F','G','H','I','J',
+				'K','L','M','N','O','P','Q','R',
+				'S','T','U','V','W','X','Y','Z'};
+
+	if(index < 0 || index > 26) throw " Array out of bounds. Can't access!";
+
+	
+	cout<<"At this position, the array contains : " << a[index];
+}
+
+
+void arraychoice()
+{
+	int index;
+	while(choice == 'y')
+	{
+		cout<<"You have characters A to Z at index 0 to 25. "<<endl;
+		cout<<"Enter an index(0-26) you want to access"<<endl;
+		cin>>index;
+
+		try
+		{
+		
+			arrayindex(index);
+		}
+
+		catch (const char *s)
+		{
+			cout<<s<<endl;
+			cout<<"Enter a new index: "<<endl;
+			continue;
+		}
+
+		cout<<endl<<"Do you want to continue?(y/n) "<<endl;
+		cin>>choice;
+	}
+
+	cout<<"Bye! Terminating Program! "<<endl;
+}
+
+
+void divisionchoice()
+{
+	while(choice == 'y')
+	{
+		cout<<"Enter x: ";
+		cin >> x;
+
+		cout<<endl<<"Enter y: ";
+		cin >> y;
+
+		try
+		{
+			divide(x,y);
+		}
+
+		catch (const char * s)
+		{
+			cout<<s<<endl;
+			cout<<endl;
+			cout<<"Enter a new pair of numbers: "<<endl;
+			continue;
+		}
+
+		cout<<endl<<"Do you want to continue?(y/n) "<<endl;
+		cin>>choice;
+	}
+
+	cout<<"Bye! Terminating Program! "<<endl;
+}
+
+
+
+
+
+
+
+int main()
+{
+
+	int ch;
+	cout<<"Enter a choice: "<<endl;
+	cout<<"1. Division by zero exception "<<endl;
+	cout<<"2. Array out of bound exception "<<endl;
+	cin >> ch;
+
+	switch(ch)
+	{
+		case 1: 
+			divisionchoice();
+			break;
+		case 2:
+			arraychoice();
+			break;
+
+	}
+
+	return 0;
+}
