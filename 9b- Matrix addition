@@ -1,0 +1,76 @@
+#include<iostream>
+using namespace std;
+
+class Matrix
+{
+
+public:
+	int i,j;
+	int a[10][10];
+
+	void getdata()
+	{
+		cout<<"Enter the elements of the matrix: "<<endl;
+		for(i=0;i<2;i++)
+		{
+			for(j=0;j<2;j++)
+			{
+				cin>>a[i][j];
+			}
+		}
+	}
+
+	Matrix operator +(const Matrix &m)
+	{
+		Matrix temp;
+
+		for(i=0;i<2;i++)
+		{
+			for(j=0;j<2;j++)
+			{
+				temp.a[i][j] = a[i][j] + m.a[i][j];
+			}
+		}
+
+		return temp;
+	}
+
+
+	void display()
+	{
+		for(i=0;i<2;i++)
+		{
+			for(j=0;j<2;j++)
+			{
+				cout<<a[i][j]<<"\t";
+			}
+			cout<<endl;
+		}
+	}
+};
+
+
+int main()
+{
+	Matrix m1,m2,m3;
+	m2.getdata();
+	cout<<"Enter the details of the matrix you want to add: "<<endl;
+	m3.getdata();
+
+	m1 = m2+m3;
+	cout<<"First Matrix: "<<endl;
+	m2.display();
+
+	cout<<"     + ";
+	cout<<"\n";
+	cout<<"Second Matrix: "<<endl;
+	m3.display();
+
+	
+	cout<<"     = ";
+	cout<<endl;
+	cout<<"Resultant Matrix: " << endl;
+	m1.display();
+
+	return 0;
+}
