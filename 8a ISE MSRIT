@@ -1,0 +1,48 @@
+#include<iostream>
+#include<string.h>
+using namespace std;
+
+class STRING
+{
+	public:
+		char str[20];
+		int length;
+		STRING()
+		{
+			strcpy(str,"\0");
+		}
+		STRING(const char *s)
+		{
+			length=strlen(s);
+			strcpy(str,s);
+		}
+		STRING(const STRING &s)
+		{
+			length=s.length;
+			strcpy(str,s.str);
+		}
+		
+		STRING operator+(const STRING &s2)
+		{
+			STRING s3;
+			s3.length=this->length+s2.length;
+			strcpy(s3.str,(strcat(this->str,s2.str)));
+			return s3;
+		}
+		
+		friend ostream &operator<<(ostream &out,const STRING s)
+		{
+			out<<s.str;
+		}
+};
+
+int main()
+{
+	STRING s1="ISE";
+	cout<<"content in s1 = "<<s1<<endl;
+	STRING s2="MSRIT";
+	cout<<"content in s2 = "<<s2<<endl;
+	STRING s3(s1+s2);
+	cout<<"content in s3= "<<s3<<endl;
+	return 0;
+}
