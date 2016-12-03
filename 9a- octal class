@@ -1,0 +1,99 @@
+/************************
+9) a)Write a C++ program to create a class called OCTAL, which has the characteristics of an octal
+
+number. Get the Input using >> operator , Implement the following operations by writing an
+
+appropriate constructor and an overloaded operator +.
+
+i. OCTAL h = x ; where x is an integer
+
+ii. int y = h + k ; where h is an OCTAL object and k is an integer.
+
+Display the OCTAL result by overloading the operator <<. Also display the values of h and y.
+************************/
+
+
+#include <iostream> 
+#include <math.h> 
+using namespace std;
+
+class octal 
+{ 
+   private: 
+    int o; 
+   public: 
+    octal(); 
+    octal(int); 
+    ~octal(); 
+    int dectooct(int x); 
+    int octtodec(int x); 
+    friend ostream &operator<<(ostream &print,octal); 
+    int operator +(int); 
+}; 
+
+octal::octal() 
+{ } 
+
+octal::octal(int x) 
+{ 
+   o=dectooct(x); 
+} 
+
+
+octal::~octal() 
+{ }
+
+
+int octal::dectooct(int x) 
+{ 
+   int i=0,sum=0,rem; 
+   while(x!=0) 
+   { 
+      rem=x%8; 
+      sum=sum+rem*pow(10,i); 
+      i++; 
+      x=x/8; 
+   } 
+   return sum; 
+} 
+ 
+ 
+int octal::octtodec(int x) 
+{ 
+   int i=0,sum=0,rem; 
+   while(x!=0) 
+   { 
+      rem=x%10; 
+      sum=sum+rem*pow(8,i); 
+      i++; 
+      x=x/10; 
+   } 
+   return sum; 
+} 
+ostream &operator<<(ostream &print,octal x) 
+{ 
+   print<<x.o; 
+   return print; 
+} 
+
+
+int octal::operator+(int x) 
+{ 
+   return octtodec(o) + x; 
+} 
+
+
+int main() 
+{ 
+   int x,y,k; 
+   cout<<endl<<"Enter the value of x in decimal notation: "; 
+   cin>>x; 
+   octal h = x; 
+   cout<<endl<<"Corresponding value of x in octal notation, h= "<<h; 
+   cout<<endl<<"Enter the value of k in decimal notation: "; 
+   cin>>k; 
+   cout<<endl<<"The value of k= "<<k; 
+   y=h+k; 
+   cout<<endl<<"The value of h+k in decimal notation, y = "<<y<<endl; 
+   return 0; 
+} 
