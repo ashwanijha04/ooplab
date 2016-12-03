@@ -1,0 +1,134 @@
+#include <iostream>
+using namespace std;
+
+class MinimumBalanceException
+{
+	public:
+		char str[200];
+        int amt1;
+
+		MinimumBalanceException()
+		{
+			*str = 0;
+			amt1 = 0;
+		}
+
+		MinimumBalanceException(char *s, int x) 
+		{
+           strcpy(str, s);
+           amt1 = x;
+		}
+};
+
+class Account
+{
+	long account_number;
+	string name;
+	float balance_amount = 0.0 ;
+
+	public:
+
+		void get_data()
+		{
+			string nam;
+			long acc_no;
+
+			cout<<"Enter name: "<<endl;
+			cin>>nam;
+			name = nam;
+
+			cout<<"Enter account_number: "<<endl;
+			cin>>acc_no;
+			account_number = acc_no; 
+
+			
+		}
+
+
+		void deposit()
+		{
+			float amt;
+
+			cout<<"Enter the amount to be deposited: "<<endl;
+			cin >> amt;
+
+			balance_amount = balance_amount + amt;
+			cout<<"Your account is credited with Rs. "<<amt<<endl;
+			cout<<"Total Balance is :  "<< balance_amount<<endl;
+		}
+
+
+		void withdraw()
+		{
+
+			float amt;
+
+			cout<<"Enter the amount to be withdrawn: "<<endl;
+			cin>>amt;
+
+			try
+			{
+				if(amt > balance_amount) 
+					throw MinimumBalanceException("Can't Withdraw ", amt);
+
+				balance_amount = balance_amount - amt;
+				cout<<"Your account is debited with Rs. "<<amt<<endl;
+				cout<<"Total balance is :  "<<balance_amount<<endl;
+			}
+
+			catch(MinimumBalanceException e)
+			{
+				cout<<e.str<<endl;
+				cout<<e.amt1 << " is greater than Total Balance in your account. "<<endl;
+				cout<<"Try again."<<endl;
+			}
+		}
+
+		void display()
+		{
+			
+			cout<<"Current Balance = " << balance_amount<<endl;
+
+		}
+};
+
+
+
+
+int main()
+{
+	Account a;
+	a.get_data();
+	int choice;
+
+	while(1)
+	{
+		cout<<"1. Withdraw "<<endl;
+		cout<<"2. Deposit "<<endl;
+		cout<<"3. Display Balance "<<endl;
+
+		cin>>choice;
+		switch(choice)
+		{
+			case 1:
+				a.withdraw();
+				break;
+
+			case 2:
+				a.deposit();
+				break;
+
+			case 3:
+				a.display();
+				break;
+
+			default:
+				exit(0);
+
+		}	
+	}
+
+	
+	return 0;
+
+}
