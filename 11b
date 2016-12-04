@@ -32,7 +32,7 @@ int main()
 	ofstream ofile("Myfile.dat") ; //creating a new file if it doesn't exist
 	ofile.write(info1,30);
 	cout<<"Cursor is at position "<<ofile.tellp()<<endl;
-	ofile.seekp(15,ios::beg); // MOVE 20 BYTES from the beginning
+	ofile.seekp(15,ios::beg); // MOVE 15 BYTES from the beginning
 	cout<<"Cursor is at position "<<ofile.tellp()<<endl;
 
 	ofile.write(info2,20); // Write 20 bytes of info again
