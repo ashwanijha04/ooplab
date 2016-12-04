@@ -61,7 +61,7 @@ int main()
 {
 	Employee e;
 	//int c,w,l;
-	string filename;
+	//string filename;
 
 
 	ofstream ofile("Sample.txt"); //creating a file
