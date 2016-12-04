@@ -60,7 +60,7 @@ void countStuff()
 int main()
 {
 	Employee e;
-	int c,w,l;
+	//int c,w,l;
 	string filename;
 
 
