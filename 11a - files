@@ -1,0 +1,82 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+
+class Employee
+{
+
+public:
+	int empno;
+	char name[20];
+	float salary;
+	char depname[20];
+
+	 void getdata()
+	 {
+		cout<<"Employee number: "<<endl;
+		cin>>empno;
+
+		cout<<"Name: "<<endl;
+		cin>>name;
+
+		cout<<"Salary: "<<endl;
+		cin>>salary;
+
+		cout<<"Department Name: "<<endl;
+		cin>>depname;
+	 }
+
+};
+
+
+void countStuff()
+{
+	ifstream fin("Sample.txt"); //opening text file
+ 	int line=1,word=1,size; //will not count first word and last line so initial value is 1
+ 	char ch;
+ 
+ 
+ 	fin.seekg(0,ios::end); //bring file pointer position to end of file
+ 	size=fin.tellg(); //count number of bytes till current postion for file pointer
+ 
+	 fin.seekg(0,ios::beg); //bring position of file pointer to begining of file
+	 
+	 while(fin)
+	 {
+	  fin.get(ch);
+	  if(ch==' '||ch=='n')
+	   word++;
+	   
+	  if(ch=='n')
+	   line++;
+	 } 
+	 
+	 cout<<"Lines="<<line<<"\nWords="<<word<<"\nSize="<<size<<"\n";
+	 fin.close(); //closing file
+}
+
+
+int main()
+{
+	Employee e;
+	int c,w,l;
+	string filename;
+
+
+	ofstream ofile("Sample.txt"); //creating a file
+
+	cout<<"Enter details: "<<endl;
+	e.getdata();
+
+	
+	ofile<<"Name: "<<e.name<<endl;
+	ofile<<"Employee number: "<<e.empno<<endl;
+	ofile<<"Salary: "<<e.salary<<endl;
+	ofile<<"Department Name: "<<e.depname<<endl;
+
+	countStuff();
+
+	return 0;
+
+}
