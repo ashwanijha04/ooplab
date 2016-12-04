@@ -1,0 +1,86 @@
+#include<iostream>
+
+using namespace std;
+
+class Shape
+{
+public:
+	float length,breadth;
+	
+	virtual void get_area() = 0;
+	void set_width();
+	void set_height();
+
+};
+
+void Shape::set_width()
+{
+	cout<<"Enter the width: "<<endl;
+	cin>>breadth;
+}
+
+void Shape::set_height()
+{
+	cout<<"Enter the height: "<<endl;
+	cin>>length;
+}
+
+class Rectangle : public Shape
+{
+	void get_area()
+	{
+		cout<<"Area of rectangle: "<< length*breadth << endl;
+	}
+};
+
+
+class Triangle : public Shape
+{
+	void get_area()
+	{
+		cout<<"Area of triangle: "<< 0.5 * length * breadth<<endl;
+	}
+};
+
+int main()
+{
+	Shape *s;
+
+	Rectangle r;
+	Triangle t;
+	int choice;
+
+	while(1)
+	{
+
+		cout<<"Enter a choice: "<<endl;
+		cout<<"1. Rectangle "<<endl;
+		cout<<"2. Triangle "<<endl;
+		cin>>choice;
+
+		switch(choice)
+		{
+			case 1:
+				s = &r;
+				s->set_width();
+				s->set_height();
+				s->get_area();
+				break;
+
+			case 2:
+				s = &t;
+				s->set_width();
+				s->set_height();
+				s->get_area();
+				break;
+
+			default:
+				exit(0);
+
+		}
+	}
+	
+
+	return 0;
+}
+
