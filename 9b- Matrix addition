@@ -1,1 +1,67 @@
-WILL BE UPLOADED SOON. Delay DUE TO AN ERROR !
+#include<iostream>
+using namespace std;
+
+class Matrix
+{
+
+public:
+	int i,j;
+	int a[10][10];
+	
+
+	void getdata()
+	{
+		cout<<"Enter the elements of the matrix: "<<endl;
+		for(i=0;i<2;i++)
+		{
+			for(j=0;j<2;j++)
+			{
+				cin>>a[i][j];
+			}
+		}
+	}
+
+	
+	friend Matrix operator +(const Matrix &m, int x);
+
+
+	void display()
+	{
+		for(i=0;i<2;i++)
+		{
+			for(j=0;j<2;j++)
+			{
+				cout<<a[i][j]<<"\t";
+			}
+			cout<<endl;
+		}
+	}
+};
+
+
+Matrix operator +(const Matrix &m, int x)
+	{
+		Matrix temp;
+
+		for(int i=0;i<2;i++)
+		{
+			for(int j=0;j<2;j++)
+			{
+				temp.a[i][j] = x + m.a[i][j];
+			}
+		}
+
+		return temp;
+	}
+
+int main()
+{
+	Matrix m1,m2;
+	m1.getdata();
+	//cout<<"Enter the details of the matrix you want to add: "<<endl;
+	m2 = m1 + 2;
+	m2.display();
+
+
+	return 0;
+}
