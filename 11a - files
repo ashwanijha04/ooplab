@@ -1,3 +1,19 @@
+/*****************************
+
+NOTE: 
+Before executing this code, make sure you change the working folder to the desktop otherwise the file won't be created.
+To work with files, the working directory should be the same as that where the file is being created and the executable 
+./a.out will be run.
+else you will have to specify the entire path of file in the filename which is a hectic task.
+So make sure you do this.
+
+Open terminal and use the following commands: 
+Mac/Linux users: cd Desktop
+Windows users: I hate you ! :P
+
+********************************/
+
+
 #include <iostream>
 #include <fstream>
 using namespace std;
