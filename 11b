@@ -1,0 +1,34 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main()
+{
+
+	char info1[200] = "Game of Thrones is my favourite show and tyrion is my favourite character. He's still going strong "; // 26+9 bits
+	char info2[200] = "It is written by George R.R. Martin. He likes killing the favourites.";
+	char input[200];
+
+
+	ofstream ofile("Myfile.dat") ; //creating a new file if it doesn't exist
+	ofile.write(info1,30);
+	cout<<"Cursor is at position "<<ofile.tellp()<<endl;
+	ofile.seekp(15,ios::beg); // MOVE 20 BYTES from the beginning
+	cout<<"Cursor is at position "<<ofile.tellp()<<endl;
+
+	ofile.write(info2,20); // Write 20 bytes of info again
+	cout<<"Cursor is at position "<<ofile.tellp()<<endl;
+
+	ifstream ifile("Myfile.dat");
+	ifile.getline(input,sizeof(ofile.tellp()));
+	cout<<"****************************************"<<endl;
+	cout<<input<<endl;
+	cout<<"****************************************"<<endl;
+ 	cout<<"END OF FILE REACHED. Ending Program"<<endl;
+
+	return 0;
+
+
+
+}
