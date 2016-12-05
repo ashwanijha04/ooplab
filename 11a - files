@@ -51,6 +51,7 @@ void countStuff()
 	ifstream fin("Sample.txt"); //opening text file
  	int line=1,word=1,size; //will not count first word and last line so initial value is 1
  	char ch;
+ 	int character;
  
  
  	fin.seekg(0,ios::end); //bring file pointer position to end of file
@@ -61,14 +62,18 @@ void countStuff()
 	 while(fin)
 	 {
 	  fin.get(ch);
-	  if(ch==' '||ch=='n')
+	  if(ch==' '||ch=='\n')
 	   word++;
 	   
-	  if(ch=='n')
+	  if(ch=='\n')
 	   line++;
+	   
+	   if(ch != ' ' && ch!='\n')
+	    character++;
 	 } 
 	 
 	 cout<<"Lines="<<line<<"\nWords="<<word<<"\nSize="<<size<<"\n";
+	 cout<<"Characters: "<<character;
 	 fin.close(); //closing file
 }
 
