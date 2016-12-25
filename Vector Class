@@ -1,0 +1,67 @@
+#include <iostream>
+using namespace std;
+
+class Vector
+{
+	int a[10];
+public:
+	void assign(int);
+	void show_data(int);
+	void multiply(int,int);
+	void display(int);
+};
+
+void Vector::assign(int size)
+{
+	cout<<"Enter the elements: "<<endl;
+	for(int i=0;i<size;i++)
+	{
+		cin>>a[i];
+	}
+}
+
+void Vector::show_data(int size)
+{
+	cout<<"The elements of your array are: "<<endl;
+
+	for(int i=0; i<size; i++)
+	{
+		cout<<a[i]<<" , "<<endl;
+	}
+}
+
+
+void Vector::multiply(int x, int size)
+{
+	for(int i=0; i<size; i++)
+	{
+		a[i] = x*a[i];
+	}
+}
+
+void Vector::display(int size)
+{
+	cout<<"The elements after multiplication with scalar are: "<<endl;
+	for(int i=0; i<size; i++)
+	{
+		cout<<a[i]<<" , "<<endl;
+	}
+
+}
+
+int main()
+{
+	Vector v;
+	int size,x;
+	cout<<"Enter the size of the array: ";
+	cin >> size;
+
+	v.assign(size);
+	v.show_data(size);
+
+	cout<<"Enter the scalar you want to multiply with: ";
+	cin>>x;
+
+	v.multiply(x,size);
+	v.display(size);
+}
