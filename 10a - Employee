@@ -68,12 +68,10 @@ void countStuff()
 	  if(ch=='\n')
 	   line++;
 	   
-	   if(ch != ' ' && ch!='\n')
-	    character++;
 	 } 
 	 
-	 cout<<"Lines="<<line<<"\nWords="<<word<<"\nSize="<<size<<"\n";
-	 cout<<"Characters: "<<character;
+	 cout<<"Lines="<<line<<"\nWords="<<word<<endl;
+	 cout<<"Characters: "<<size<<endl; //The size is same as number of characters.
 	 fin.close(); //closing file
 }
 
@@ -81,8 +79,7 @@ void countStuff()
 int main()
 {
 	Employee e;
-	//int c,w,l;
-	//string filename;
+	
 
 
 	ofstream ofile("Sample.txt"); //creating a file
