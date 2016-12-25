@@ -1,0 +1,53 @@
+#include <iostream>
+using namespace std;
+
+void area(double length, double breadth)
+{
+	cout << "Area : " << length*breadth;
+}
+
+void area(double side)
+{
+	cout << "Area : " << side*side;
+}
+
+void area(float radius)
+{
+	cout << "Area : " << 3.14*radius*radius;
+}
+
+int main()
+{
+	int choice;
+	double length,breadth,side;
+	float radius;
+	cout<<"Enter a choice: " <<endl;
+	cout<<"1.Rectangle\n2.Square\n3.Circle"<<endl;
+	cin>>choice;
+
+	switch(choice)
+	{
+		case 1:
+			cout<<"Length: ";
+			cin >>length;
+			cout<<"Breadth: ";
+			cin >>breadth;
+			area(length,breadth);
+			break;
+
+		case 2:
+			cout<<"Side: ";
+			cin >>side;
+			area(side);
+			break;
+
+		case 3:
+			cout<<"Radius: ";
+			cin >>radius;
+			area(radius);
+			break;
+		
+		default: exit(0);
+	}
+
+}
