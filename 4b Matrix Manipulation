@@ -1,0 +1,165 @@
+#include <iostream>
+using namespace std;
+
+class Matrix
+{
+	int **a;
+	int ord;
+
+public:
+	Matrix(int n)
+	{
+		ord = n;
+		a = new int*[n];
+		for(int i=0; i<n; i++)
+			a[i]=new int[n];
+	}
+
+	Matrix(Matrix &M)
+	{
+		ord = M.ord;
+		a = new int*[ord];
+
+		for(int i=0;i<ord;i++)
+			a[i] = new int[ord];
+
+		for(int i=0; i<ord; i++)
+		{
+			for(int j=0; j<ord; j++)
+			{
+				a[i][j] = M.a[i][j];
+			}
+		}
+	}
+
+	void getdata()
+	{
+		for(int i=0; i<ord; i++)
+		{
+			for(int j=0; j<ord; j++)
+			{
+				cin>>a[i][j];
+			}
+		}
+	}
+
+	void putdata()
+	{
+		for(int i=0; i<ord; i++)
+		{
+			for(int j=0; j<ord; j++)
+			{
+				cout<<a[i][j]<<"\t";
+			}
+		}
+		cout<<endl;
+	}
+
+	
+
+
+friend Matrix operator *(Matrix A, Matrix B)
+{
+	int o = A.ord;
+	Matrix mult(o);
+
+	for(int i=0; i<o; i++)
+		{
+			for(int j=0; j<o; j++)
+			{
+				mult.a[i][j] = 0;
+
+				for(int k=0; k<o; k++)
+				{
+					mult.a[i][j] += A.a[i][k]*B.a[k][j];
+				}
+			}
+		}
+
+		return mult;
+};
+
+
+
+
+friend Matrix operator +(Matrix A, Matrix B)
+{
+	int o = A.ord;
+	Matrix mult(o);
+
+	for(int i=0; i<o; i++)
+		{
+			for(int j=0; j<o; j++)
+			{
+				mult.a[i][j] = A.a[i][j] + B.a[i][j];
+
+			}
+		}
+
+	return mult;
+}
+
+~Matrix()
+{
+	delete a;
+	cout<<"Object deleted";
+}
+
+Matrix& operator=(const Matrix& M)
+{
+	ord = M.ord;
+	a = new int * [ord];
+
+	for(int i=0;i<ord;i++)
+		a[i] = new int[ord];
+
+	for(int i=0; i<ord; i++)
+	{
+		for(int j=0; j<ord; j++)
+		{
+			a[i][j] = M.a[i][j];
+		}
+	}
+
+}
+
+}; // end of class
+
+
+int main()
+{
+	int n;
+	cout<<"Enter the size of square Matrix: "<<endl;
+	cin >>n;
+
+	Matrix A(n), B(n), C(n), D(n);
+
+	cout<<"Enter Matrix: A"<<endl;
+	A.getdata();
+
+	cout<<"Enter Matrix: B"<<endl;
+	B.getdata();	
+
+	cout<<"Matrix A: "<<endl;
+	A.putdata();
+
+	cout<<"Matrix B: "<<endl;
+	B.putdata();
+
+	Matrix c(A);
+	cout<<"Matrix copies (C=A):\n";
+	c.putdata();
+
+	C=A+B;
+
+	cout<<"\nA+B = \n";
+	C.putdata();
+
+	C=A*B;
+	cout<<"\n A*B : \n";
+	C.putdata();
+
+	return 0;
+
+
+}
