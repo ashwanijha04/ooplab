@@ -1,0 +1,89 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+class Circle
+{
+	float radius;
+
+public:
+	Circle(int r)
+	{
+		radius = r;
+	}
+
+	float area(float);
+
+};
+
+float Circle::area(float radius)
+{
+	return 3.14*radius*radius;
+}
+
+class Sector:public Circle
+{
+	float angle;
+
+public:
+	Sector(int rad, int ang):Circle(rad)
+	{
+		angle = ang;
+	}
+
+	float area_sector(float,float);
+};
+
+float Sector::area_sector(float radius, float angle)
+{
+	return 0.5*radius*radius*angle;
+}
+
+
+class Segment:public Circle
+{
+	float length;
+
+public:
+	Segment(int rad, int len):Circle(rad)
+	{
+		length = len;
+	}
+	float area_segment(float, float, float);
+};
+
+float Segment::area_segment(float r, float a,float l)
+{
+	return pow(r*r*((r-l)/r)-(r-l)*(2*r*l-l*l),0.5);
+}
+
+int main()
+{
+	float radius;
+	float angle;
+	float length;
+
+	cout<<"radius: ";
+	cin >> radius;
+
+	cout<<"angle: ";
+	cin >> angle;
+
+	cout<<"length: ";
+	cin >> length;
+
+	Circle cir(radius);
+	Sector sec(radius,angle);
+	Segment seg(radius,length);
+
+	float ac = cir.area(radius);
+	float asec = sec.area_sector(radius,angle);
+	float aseg = seg.area_segment(radius,angle,length);
+
+	cout<<ac<<endl;
+	cout<<asec<<endl;
+	cout<<aseg<<endl;
+
+	return 0;
+
+}
