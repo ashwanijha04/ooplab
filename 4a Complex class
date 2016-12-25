@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+
+class Complex
+{
+	int real;
+	int imaginary;
+
+public:
+	Complex(int r,int i)
+	{
+		real = r;
+		imaginary = i;
+	}
+
+	friend void add(Complex,Complex);
+	friend void multiply(Complex,Complex);
+};
+
+void add(Complex c1, Complex c2)
+{
+	int real_sum = c1.real + c2.real;
+	int imaginary_sum = c1.imaginary + c2.imaginary;
+
+	cout<<"The sum is: ";
+	cout<<real_sum << " + i"<<imaginary_sum;
+}
+
+void multiply(Complex c1, Complex c2)
+{
+	int real_p;
+	int imaginary_p;
+	int mixed_p;
+
+	real_p = c1.real*c2.real;
+	imaginary_p = c1.imaginary*c2.imaginary;
+	mixed_p = (c1.real*c2.imaginary) + (c2.real*c1.imaginary);
+
+	cout << "The product is: ";
+
+	cout<<real_p - imaginary_p<<" + i"<<mixed_p;
+}
+
+int main()
+{
+	Complex c1(1,2);
+	Complex c2(3,4);
+
+	add(c1,c2);
+	multiply(c1,c2);
+}
