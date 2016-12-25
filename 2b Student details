@@ -1,0 +1,81 @@
+#include <iostream>
+using namespace std;
+
+int n;
+struct student
+{
+	char name[20];
+	char roll[20];
+	float height;
+	float weight;
+};
+typedef struct student STD;
+
+void get_details(STD S[])
+{
+	int i;
+
+	cout<<"Enter the number of students: "<<endl;
+	cin>>n;
+	
+	cout<<"Enter the details: "<<endl;
+
+	for(i=0;i<n;i++)
+	{
+		cout<<"Student "<<i+1 << endl;
+		cout<<"NAME: ";
+		cin>>S[i].name;
+		cout<<"ROLL: ";
+		cin>>S[i].roll;
+		cout<<"Height(cms): ";
+		cin>>S[i].height;
+		cout<<"Weight(kgs): ";
+		cin>>S[i].weight;
+	}
+}
+
+void sort(STD S[],int n)
+{
+	int i,j;
+	STD temp;
+
+	for(i=0; i<n-1; i++)
+	{
+		for(j=0; j<n-i-1; j++)
+		{
+			if(S[j].height > S[j+1].height)
+			{
+				temp = S[j+1];
+				S[j+1] = S[j];
+				S[j] = temp;
+			}
+		}	
+	}
+}
+
+
+void display(STD S[],int n)
+{
+	int i;
+	cout<<"\nNAME\tROLL\tHEIGHT\tWEIGHT\n"<<endl;
+	for(i=0; i<n; i++)
+	{
+		
+		cout<<"\n"<<S[i].name<<"\t\t"<<S[i].roll<<"\t\t"<<S[i].height<<"\t\t"<<S[i].weight<<"\t\t";
+	}
+}
+
+
+int main()
+{
+	STD S[30];
+	get_details(S);
+	cout<<"\nBefore sorting:\n"<<endl;
+	display(S,n);
+
+	cout<<"\nAfter sorting: \n"<<endl;
+	sort(S,n);
+	display(S,n);
+
+	return 0;
+}
