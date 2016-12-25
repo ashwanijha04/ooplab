@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+class Mean
+{
+	int a,b,c;
+	
+	public:
+		friend double compute(Mean);
+		Mean(int x, int y, int z)
+		{
+			a = x;
+			b = y;
+			c = z;
+		}
+};
+
+double compute(Mean m)
+{
+	double mean = ((m.a + m.b + m.c)/3);
+	return mean;
+}
+
+int main()
+{
+	int n1,n2,n3;
+
+	cout << "Enter 3 values: "<<endl;
+	cin >> n1;
+	cin >> n2;
+	cin >> n3;
+
+	Mean x(n1,n2,n3);
+	cout << compute(x) << endl;
+
+}
