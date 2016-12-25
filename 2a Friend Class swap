@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+
+class A
+{
+private:
+	int a;
+
+public:
+	A(){a = 10;}
+	friend class B;
+};
+
+class B
+{
+private:
+	int b;
+
+public:
+	B(){b = 20;}
+
+	void swap(A);
+};
+
+void B::swap(A x)
+{
+
+	cout<<"\nBefore SWAPPING: "<<endl;
+	cout<<"a = " <<x.a;
+	cout<<"\tb = " <<b;
+	
+
+	int temp;
+	temp = x.a;
+	x.a = b;
+	b = temp;
+
+	cout<<"\nAFTER SWAPPING: "<<endl;
+	cout<<"a = " <<x.a;
+	cout<<"\tb = "<<b;
+}
+
+int main()
+{
+	A x;
+	B y;
+
+	y.swap(x);
+}
