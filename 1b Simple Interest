@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+double SI(double principle = 1000, int rate = 12, int time=2)
+{
+	double si;
+	si = ((principle*rate*time)/100);
+	return si;
+}
+
+int main()
+{
+	double principle;
+	int rate,time;
+
+
+	cout<< "principle: ";
+	cin >> principle;
+
+	cout<< "rate: ";
+	cin >> rate;
+
+	cout<< "time: ";
+	cin >> time;
+
+	cout << SI(principle,rate,time) <<endl;
+	cout << SI(principle)<<endl;
+	cout << SI()<<endl;
+	cout << SI(principle,12,5)<<endl;
+	
+	return 0;
+
+}
