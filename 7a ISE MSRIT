@@ -16,11 +16,6 @@ public:
 		strcpy(str,s);
 	}
 
-	STRING(const STRING& s)
-	{
-		strcpy(str,s.str);		
-	}
-
 	STRING operator +(const STRING &s)
 	{
 		STRING s3;
