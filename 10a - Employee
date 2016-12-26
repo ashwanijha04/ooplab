@@ -49,7 +49,7 @@ public:
 void countStuff()
 {
 	ifstream fin("Sample.txt"); //opening text file
- 	int line=1,word=1,size; //will not count first word and last line so initial value is 1
+ 	int line=-1,word=-1,size; //will not count first word and last line so initial value is -1.
  	char ch;
  	int character;
  
