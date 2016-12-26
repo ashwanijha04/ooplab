@@ -7,109 +7,154 @@ after every operation.
 
 ****************************************/
 
-#include <iostream>  
-//#include <iomanip.h> 
+#include <iostream>
+#define QSIZE 6
+using namespace std;
+int i;
 
-#define  size  10 
-using namespace std; 
-template<class t> 
-class queue 
-{ 
-   private: 
-    t a[size]; 
-    int f,r; 
-   public: 
-    queue(); 
-    ~queue(); 
-    void add(); 
-    void del(); 
-    void dis(); 
-}; 
+template <class X>
+class que
+{
+	int r=-1;
+	int f=0;
+	X q[QSIZE];
 
-template<class t> 
-queue<t>::queue() 
-{ 
-   f=-1; 
-   r=-1; 
-} 
-
-template<class t> 
-queue<t>::~queue() 
-{ } 
-
-template<class t> 
-void queue<t>::add() 
-{ 
-   if(r==size-1) 
-      cout<<endl<<"queue is full"; 
-   else 
-   { 
-      r++; 
-      cout<<endl<<"Enter the data:"; 
-      cin>>a[r]; 
-      if(f==-1) 
-        f=0; 
-   } 
-} 
- 
- 
- 
-template<class t> 
-void queue<t>::dis() 
-{ 
-   if(f==-1) 
-      cout<<endl<<"queue is empty"; 
-   else 
-   { 
-      cout<<endl<<"Content of queue:"<<endl; 
-      for(int i=f;i<=r;i++) 
-        cout<<a[i]<<endl; 
-   } 
-} 
+public:
+	void add(X);
+	void Delete();
+	void display();
+};
 
 
-template<class t> 
-void queue<t>::del() 
-{ 
-   if(f==-1) 
-      cout<<endl<<"Queue is empty"; 
-   else 
-   { 
-      cout<<endl<<"Deleted element is "<<a[f]; 
-      if(f==r) 
-        f=r=-1; 
-      else 
-        f=f+1; 
-   } 
-} 
+template <class X>
+void que<X>::add(X item)
+{
+	if(r==QSIZE-1)
+		cout<<"Cannot Insert. que is full"<<endl;
+	else
+	{
+		q[++r] = item;
+	}
+}
 
 
-int main() 
-{ 
-   queue<int>q; 
-   int ch=1; 
-   while(ch) 
-   { 
-      cout<<endl<<"Enter 1 to add a data to queue:"; 
-      cout<<endl<<"Enter 2 to delete a data from the queue:"; 
-      cout<<endl<<"Enter 3 to display:"; 
-      cout<<endl<<"Enter 0 to quit:"; 
-      cout<<endl<<"Enter your choice:"; 
-      cin>>ch; 
-      switch(ch) 
-      { 
-          case 1: 
-            q.add(); 
-            break; 
-          case 2: 
-            q.del();
-            break; 
-          case 3:
-            q.dis();
-            break;
+template <class X>
+void que<X>::Delete()
+{
+	if(f>r)
+		cout<<"que is Empty."<<endl;
+	else
+	{
+		cout<<"Item deleted is "<<q[f]<<endl;
+		f++;
+
+		if(f>r)
+		{
+			f=0;
+			r=-1;
+		}
+	}
+}
 
 
-      } 
-   } 
-   return 0; 
+template <class X>
+void que<X>::display()
+{
+	if(f>r)
+	{
+		cout<<"The que is empty"<<endl;
+	}
+
+	cout<<"The contents of the que are: "<<endl;
+
+	for(i=f; i<=r; i++)
+	{
+		cout<<q[i]<<endl;
+	}
+}
+
+void integerchoice(que<int> qi)
+{
+	int item;
+	int choice;
+
+	while(1)
+	{
+		cout<<"1. Add integer"<<endl;
+		cout<<"2. Delete integer"<<endl;
+		cout<<"3. Display"<<endl;
+
+		cin>>choice;
+		switch(choice)
+		{
+			case 1:
+				cout<<"Item? ";
+				cin>>item;
+				qi.add(item);
+				break;
+
+			case 2:
+				qi.Delete();
+				break;
+
+			case 3:
+				qi.display();
+		}
+	}
+}
+void doublechoice(que<double> qd)
+{
+	double item;
+	int choice;
+
+	while(1)
+	{
+		cout<<"1. Add double"<<endl;
+		cout<<"2. Delete double"<<endl;
+		cout<<"3. Display"<<endl;
+
+		cin>>choice;
+		switch(choice)
+		{
+			case 1:
+				cout<<"Item? ";
+				cin>>item;
+				qd.add(item);
+				break;
+
+			case 2:
+				qd.Delete();
+				break;
+
+			case 3:
+				qd.display();
+		}
+	}
+}
+
+int main()
+{
+	que<int> qi;
+	que<double> qd;
+
+	int choice;
+	while(1)
+	{
+		cout<<"Enter a choice: "<<endl;
+		cout<<"1. que of Integers."<<endl;
+		cout<<"2. que of doubles."<<endl;
+		cin>>choice;
+
+		switch(choice)
+		{
+			case 1:
+				integerchoice(qi);
+				break;
+			case 2:
+				doublechoice(qd);
+				break;
+		}
+
+	}
+
 }
