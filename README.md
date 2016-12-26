@@ -1,5 +1,5 @@
 # OOP-LAB-PROGRAMS
-#ALL PROGRAMS WILL BE UPLOADED SOON. Keep checking.
+#ALL PROGRAMS UPLOADED.
 
 This Repository contains all the lab programs of object oriented programming using c++.
 Hope it helps the readers.
