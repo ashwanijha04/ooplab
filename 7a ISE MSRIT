@@ -42,7 +42,7 @@ int main()
 	STRING s1 = "ISE";
 	STRING s2 = "MSRIT";
 
-	STRING s3(s1+s2);
+	STRING s3 = (s1+s2);
 
 	cout<<s3;
 
